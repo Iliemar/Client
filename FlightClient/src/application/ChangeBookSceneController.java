@@ -1,8 +1,10 @@
 package application;
 
 
+import java.awt.Label;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -17,6 +19,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -31,9 +34,13 @@ import model.FlightCompany;
 
 
 public class ChangeBookSceneController implements Initializable {
-	
+		@FXML
+		private HBox calendarBox;
+		 //@FXML
+		   // private Label warning;
 	    @FXML
 	    private HBox hbox;
+	   
 
 	    @FXML
 	    private Button exitBtn;
@@ -215,5 +222,15 @@ public class ChangeBookSceneController implements Initializable {
 	        Date.setEditable(true); 
 	        Price.setEditable(true);
 	        tableView.setEditable(true);
-	    }
+	        
+	     // Create First Calendar
+	     			DatePicker datePicker = new DatePicker();
+	     			datePicker.setValue(LocalDate.now());
+	     			datePicker.setOnAction(event -> {
+	     				LocalDate date = datePicker.getValue();
+	     				// JOptionPane.showMessageDialog(null, date);
+
+	     			});
+	     			calendarBox.getChildren().add(datePicker);
+}
 }
